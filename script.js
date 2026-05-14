@@ -31,7 +31,7 @@ function mostrarObs(id) {
 function adicionarRegistro() {
 
   const funcionario =
-    document.getElementById("funcionario").value;
+    document.getElementById("funcionario").selectedIndex = 0;
 
   const atividade =
     document.getElementById("atividade").value;
