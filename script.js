@@ -8,15 +8,19 @@ function adicionarRegistro() {
   const atividade =
     document.getElementById("atividade").value;
 
+  const categoria =
+    document.getElementById("categoria").value;
+
   const observacao =
     document.getElementById("observacao").value;
 
   if (
     funcionario === "" ||
-    atividade === ""
+    atividade === "" ||
+    categoria === ""
   ) {
 
-    alert("Preencha os campos obrigatórios.");
+    alert("Preencha todos os campos obrigatórios.");
 
     return;
   }
@@ -28,6 +32,7 @@ function adicionarRegistro() {
 
     funcionario,
     atividade,
+    categoria,
     observacao,
     data
   };
@@ -46,7 +51,7 @@ function atualizarLista() {
 
   lista.innerHTML = "";
 
-  registros.forEach((item, index) => {
+  registros.forEach((item) => {
 
     lista.innerHTML += `
 
@@ -58,6 +63,10 @@ function atualizarLista() {
 
         <strong>Atividade:</strong>
         ${item.atividade}
+        <br>
+
+        <strong>Categoria:</strong>
+        ${item.categoria}
         <br>
 
         <strong>Observação:</strong>
@@ -78,15 +87,35 @@ function limparCampos() {
 
   document.getElementById("atividade").value = "";
 
+  document.getElementById("categoria").value = "";
+
   document.getElementById("observacao").value = "";
+}
+
+function limparRegistros() {
+
+  const confirmar =
+    confirm("Deseja apagar todos os registros?");
+
+  if (!confirmar) {
+
+    return;
+  }
+
+  registros = [];
+
+  atualizarLista();
+
+  limparRelatorio();
 }
 
 function gerarRelatorio() {
 
   let texto =
+
 `RELATÓRIO OPERACIONAL
 
-==========================
+====================================
 
 `;
 
@@ -102,22 +131,34 @@ ${item.funcionario}
 Atividade:
 ${item.atividade}
 
+Categoria:
+${item.categoria}
+
 Observação:
 ${item.observacao}
 
 Data:
 ${item.data}
 
---------------------------
+------------------------------------
 
 `;
   });
 
   texto +=
-`Total de registros: ${registros.length}`;
+
+`TOTAL DE REGISTROS:
+${registros.length}
+
+====================================`;
 
   document.getElementById("relatorio").value =
     texto;
+}
+
+function limparRelatorio() {
+
+  document.getElementById("relatorio").value = "";
 }
 
 function enviarWhatsApp() {
