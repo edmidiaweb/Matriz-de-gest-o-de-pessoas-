@@ -92,6 +92,13 @@ button:hover {
   opacity: 0.9;
 }
 
+.btn-principal {
+
+  background: #2563eb;
+
+  font-weight: bold;
+}
+
 .categoria {
 
   margin-top: 15px;
@@ -131,4 +138,14 @@ li {
   margin-top: 20px;
 
   min-height: 350px;
+}
+
+.oculto {
+
+  display: none;
+}
+
+.formulario {
+
+  margin-top: 20px;
 }
