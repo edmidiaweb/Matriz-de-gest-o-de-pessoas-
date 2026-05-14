@@ -39,105 +39,202 @@
 
       <h2>Avaliação Operacional</h2>
 
+      <!-- Uso de EPIs -->
+
       <div class="categoria">
 
         <label>Uso de EPIs</label>
 
-        <select id="epis">
+        <select id="epis" onchange="mostrarObs('epis')">
           <option value="Ótimo">Ótimo</option>
           <option value="Bom">Bom</option>
           <option value="Ruim">Ruim</option>
         </select>
 
+        <textarea
+          id="obs-epis"
+          class="oculto"
+          placeholder="Observação sobre EPIs"
+        ></textarea>
+
       </div>
+
+      <!-- Organização -->
 
       <div class="categoria">
 
         <label>Organização</label>
 
-        <select id="organizacao">
+        <select id="organizacao" onchange="mostrarObs('organizacao')">
           <option value="Ótimo">Ótimo</option>
           <option value="Bom">Bom</option>
           <option value="Ruim">Ruim</option>
         </select>
 
+        <textarea
+          id="obs-organizacao"
+          class="oculto"
+          placeholder="Observação sobre organização"
+        ></textarea>
+
       </div>
+
+      <!-- Produtividade -->
 
       <div class="categoria">
 
         <label>Produtividade</label>
 
-        <select id="produtividade">
+        <select id="produtividade" onchange="mostrarObs('produtividade')">
           <option value="Ótimo">Ótimo</option>
           <option value="Bom">Bom</option>
           <option value="Ruim">Ruim</option>
         </select>
 
+        <textarea
+          id="obs-produtividade"
+          class="oculto"
+          placeholder="Observação sobre produtividade"
+        ></textarea>
+
       </div>
+
+      <!-- Abandono de Área -->
 
       <div class="categoria">
 
         <label>Abandono de Área</label>
 
         <select id="abandono">
+          <option value="Não">Não</option>
           <option value="Sim">Sim</option>
-          <option value="Nao">Nao</option>
-          <option value=""></option>
         </select>
 
       </div>
+
+      <!-- Cumprimento de Regras -->
 
       <div class="categoria">
 
         <label>Cumprimento de Regras</label>
 
-        <select id="regras">
+        <select id="regras" onchange="mostrarObs('regras')">
           <option value="Ótimo">Ótimo</option>
           <option value="Bom">Bom</option>
           <option value="Ruim">Ruim</option>
         </select>
 
+        <textarea
+          id="obs-regras"
+          class="oculto"
+          placeholder="Observação sobre regras"
+        ></textarea>
+
       </div>
+
+      <!-- Iniciativa -->
 
       <div class="categoria">
 
         <label>Iniciativa</label>
 
-        <select id="iniciativa">
+        <select id="iniciativa" onchange="mostrarObs('iniciativa')">
           <option value="Ótimo">Ótimo</option>
           <option value="Bom">Bom</option>
           <option value="Ruim">Ruim</option>
         </select>
 
+        <textarea
+          id="obs-iniciativa"
+          class="oculto"
+          placeholder="Observação sobre iniciativa"
+        ></textarea>
+
       </div>
+
+      <!-- Comunicação -->
 
       <div class="categoria">
 
         <label>Comunicação</label>
 
-        <select id="comunicacao">
+        <select id="comunicacao" onchange="mostrarObs('comunicacao')">
           <option value="Ótimo">Ótimo</option>
           <option value="Bom">Bom</option>
           <option value="Ruim">Ruim</option>
         </select>
 
+        <textarea
+          id="obs-comunicacao"
+          class="oculto"
+          placeholder="Observação sobre comunicação"
+        ></textarea>
+
       </div>
+
+      <!-- Confiabilidade -->
 
       <div class="categoria">
 
         <label>Confiabilidade</label>
 
-        <select id="confiabilidade">
+        <select id="confiabilidade" onchange="mostrarObs('confiabilidade')">
           <option value="Ótimo">Ótimo</option>
           <option value="Bom">Bom</option>
           <option value="Ruim">Ruim</option>
         </select>
 
+        <textarea
+          id="obs-confiabilidade"
+          class="oculto"
+          placeholder="Observação sobre confiabilidade"
+        ></textarea>
+
+      </div>
+
+      <!-- Pontualidade ao Chegar -->
+
+      <div class="categoria">
+
+        <label>Pontualidade ao Chegar</label>
+
+        <select id="pontualidade-chegada" onchange="mostrarObs('pontualidade-chegada')">
+          <option value="Ótimo">Ótimo</option>
+          <option value="Bom">Bom</option>
+          <option value="Ruim">Ruim</option>
+        </select>
+
+        <textarea
+          id="obs-pontualidade-chegada"
+          class="oculto"
+          placeholder="Observação sobre pontualidade ao chegar"
+        ></textarea>
+
+      </div>
+
+      <!-- Pontualidade ao Sair -->
+
+      <div class="categoria">
+
+        <label>Pontualidade ao Sair</label>
+
+        <select id="pontualidade-saida" onchange="mostrarObs('pontualidade-saida')">
+          <option value="Ótimo">Ótimo</option>
+          <option value="Bom">Bom</option>
+          <option value="Ruim">Ruim</option>
+        </select>
+
+        <textarea
+          id="obs-pontualidade-saida"
+          class="oculto"
+          placeholder="Observação sobre pontualidade ao sair"
+        ></textarea>
+
       </div>
 
       <textarea
         id="observacao"
-        placeholder="Observações"
+        placeholder="Observações gerais"
       ></textarea>
 
       <button onclick="adicionarRegistro()">
