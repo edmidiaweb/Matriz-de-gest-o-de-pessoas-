@@ -19,124 +19,132 @@
 
     <h1>Gestão Operacional</h1>
 
-    <input
-      type="text"
-      id="funcionario"
-      placeholder="Nome do funcionário"
-    >
-
-    <input
-      type="text"
-      id="atividade"
-      placeholder="Atividade realizada"
-    >
-
-    <h2>Avaliação Operacional</h2>
-
-    <div class="categoria">
-
-      <label>Uso de EPIs</label>
-
-      <select id="epis">
-        <option value="Ótimo">Ótimo</option>
-        <option value="Bom">Bom</option>
-        <option value="Ruim">Ruim</option>
-      </select>
-
-    </div>
-
-    <div class="categoria">
-
-      <label>Organização</label>
-
-      <select id="organizacao">
-        <option value="Ótimo">Ótimo</option>
-        <option value="Bom">Bom</option>
-        <option value="Ruim">Ruim</option>
-      </select>
-
-    </div>
-
-    <div class="categoria">
-
-      <label>Produtividade</label>
-
-      <select id="produtividade">
-        <option value="Ótimo">Ótimo</option>
-        <option value="Bom">Bom</option>
-        <option value="Ruim">Ruim</option>
-      </select>
-
-    </div>
-
-    <div class="categoria">
-
-      <label>Abandono de Área</label>
-
-      <select id="abandono">
-        <option value="Ótimo">Ótimo</option>
-        <option value="Bom">Bom</option>
-        <option value="Ruim">Ruim</option>
-      </select>
-
-    </div>
-
-    <div class="categoria">
-
-      <label>Cumprimento de Regras</label>
-
-      <select id="regras">
-        <option value="Ótimo">Ótimo</option>
-        <option value="Bom">Bom</option>
-        <option value="Ruim">Ruim</option>
-      </select>
-
-    </div>
-
-    <div class="categoria">
-
-      <label>Iniciativa</label>
-
-      <select id="iniciativa">
-        <option value="Ótimo">Ótimo</option>
-        <option value="Bom">Bom</option>
-        <option value="Ruim">Ruim</option>
-      </select>
-
-    </div>
-
-    <div class="categoria">
-
-      <label>Comunicação</label>
-
-      <select id="comunicacao">
-        <option value="Ótimo">Ótimo</option>
-        <option value="Bom">Bom</option>
-        <option value="Ruim">Ruim</option>
-      </select>
-
-    </div>
-
-    <div class="categoria">
-
-      <label>Confiabilidade</label>
-
-      <select id="confiabilidade">
-        <option value="Ótimo">Ótimo</option>
-        <option value="Bom">Bom</option>
-        <option value="Ruim">Ruim</option>
-      </select>
-
-    </div>
-
-    <textarea
-      id="observacao"
-      placeholder="Observações"
-    ></textarea>
-
-    <button onclick="adicionarRegistro()">
-      Adicionar Registro
+    <button class="btn-principal" onclick="mostrarFormulario()">
+      Criar Registro
     </button>
+
+    <div id="formulario" class="formulario oculto">
+
+      <input
+        type="text"
+        id="funcionario"
+        placeholder="Nome do funcionário"
+      >
+
+      <input
+        type="text"
+        id="atividade"
+        placeholder="Atividade realizada"
+      >
+
+      <h2>Avaliação Operacional</h2>
+
+      <div class="categoria">
+
+        <label>Uso de EPIs</label>
+
+        <select id="epis">
+          <option value="Ótimo">Ótimo</option>
+          <option value="Bom">Bom</option>
+          <option value="Ruim">Ruim</option>
+        </select>
+
+      </div>
+
+      <div class="categoria">
+
+        <label>Organização</label>
+
+        <select id="organizacao">
+          <option value="Ótimo">Ótimo</option>
+          <option value="Bom">Bom</option>
+          <option value="Ruim">Ruim</option>
+        </select>
+
+      </div>
+
+      <div class="categoria">
+
+        <label>Produtividade</label>
+
+        <select id="produtividade">
+          <option value="Ótimo">Ótimo</option>
+          <option value="Bom">Bom</option>
+          <option value="Ruim">Ruim</option>
+        </select>
+
+      </div>
+
+      <div class="categoria">
+
+        <label>Abandono de Área</label>
+
+        <select id="abandono">
+          <option value="Ótimo">Ótimo</option>
+          <option value="Bom">Bom</option>
+          <option value="Ruim">Ruim</option>
+        </select>
+
+      </div>
+
+      <div class="categoria">
+
+        <label>Cumprimento de Regras</label>
+
+        <select id="regras">
+          <option value="Ótimo">Ótimo</option>
+          <option value="Bom">Bom</option>
+          <option value="Ruim">Ruim</option>
+        </select>
+
+      </div>
+
+      <div class="categoria">
+
+        <label>Iniciativa</label>
+
+        <select id="iniciativa">
+          <option value="Ótimo">Ótimo</option>
+          <option value="Bom">Bom</option>
+          <option value="Ruim">Ruim</option>
+        </select>
+
+      </div>
+
+      <div class="categoria">
+
+        <label>Comunicação</label>
+
+        <select id="comunicacao">
+          <option value="Ótimo">Ótimo</option>
+          <option value="Bom">Bom</option>
+          <option value="Ruim">Ruim</option>
+        </select>
+
+      </div>
+
+      <div class="categoria">
+
+        <label>Confiabilidade</label>
+
+        <select id="confiabilidade">
+          <option value="Ótimo">Ótimo</option>
+          <option value="Bom">Bom</option>
+          <option value="Ruim">Ruim</option>
+        </select>
+
+      </div>
+
+      <textarea
+        id="observacao"
+        placeholder="Observações"
+      ></textarea>
+
+      <button onclick="adicionarRegistro()">
+        Salvar Registro
+      </button>
+
+    </div>
 
     <button onclick="limparRegistros()">
       Limpar Registros
