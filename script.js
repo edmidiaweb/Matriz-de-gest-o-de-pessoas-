@@ -8,33 +8,53 @@ function adicionarRegistro() {
   const atividade =
     document.getElementById("atividade").value;
 
-  const categoria =
-    document.getElementById("categoria").value;
-
   const observacao =
     document.getElementById("observacao").value;
 
   if (
     funcionario === "" ||
-    atividade === "" ||
-    categoria === ""
+    atividade === ""
   ) {
 
-    alert("Preencha todos os campos obrigatórios.");
+    alert("Preencha os campos obrigatórios.");
 
     return;
   }
 
-  const data =
-    new Date().toLocaleString("pt-BR");
-
   const registro = {
 
     funcionario,
+
     atividade,
-    categoria,
+
     observacao,
-    data
+
+    epis:
+      document.getElementById("epis").value,
+
+    organizacao:
+      document.getElementById("organizacao").value,
+
+    produtividade:
+      document.getElementById("produtividade").value,
+
+    abandono:
+      document.getElementById("abandono").value,
+
+    regras:
+      document.getElementById("regras").value,
+
+    iniciativa:
+      document.getElementById("iniciativa").value,
+
+    comunicacao:
+      document.getElementById("comunicacao").value,
+
+    confiabilidade:
+      document.getElementById("confiabilidade").value,
+
+    data:
+      new Date().toLocaleString("pt-BR")
   };
 
   registros.push(registro);
@@ -63,11 +83,39 @@ function atualizarLista() {
 
         <strong>Atividade:</strong>
         ${item.atividade}
+        <br><br>
+
+        <strong>Uso de EPIs:</strong>
+        ${item.epis}
         <br>
 
-        <strong>Categoria:</strong>
-        ${item.categoria}
+        <strong>Organização:</strong>
+        ${item.organizacao}
         <br>
+
+        <strong>Produtividade:</strong>
+        ${item.produtividade}
+        <br>
+
+        <strong>Abandono de Área:</strong>
+        ${item.abandono}
+        <br>
+
+        <strong>Cumprimento de Regras:</strong>
+        ${item.regras}
+        <br>
+
+        <strong>Iniciativa:</strong>
+        ${item.iniciativa}
+        <br>
+
+        <strong>Comunicação:</strong>
+        ${item.comunicacao}
+        <br>
+
+        <strong>Confiabilidade:</strong>
+        ${item.confiabilidade}
+        <br><br>
 
         <strong>Observação:</strong>
         ${item.observacao}
@@ -86,8 +134,6 @@ function limparCampos() {
   document.getElementById("funcionario").value = "";
 
   document.getElementById("atividade").value = "";
-
-  document.getElementById("categoria").value = "";
 
   document.getElementById("observacao").value = "";
 }
@@ -115,7 +161,7 @@ function gerarRelatorio() {
 
 `RELATÓRIO OPERACIONAL
 
-====================================
+======================================
 
 `;
 
@@ -131,8 +177,31 @@ ${item.funcionario}
 Atividade:
 ${item.atividade}
 
-Categoria:
-${item.categoria}
+AVALIAÇÃO OPERACIONAL
+
+Uso de EPIs:
+${item.epis}
+
+Organização:
+${item.organizacao}
+
+Produtividade:
+${item.produtividade}
+
+Abandono de Área:
+${item.abandono}
+
+Cumprimento de Regras:
+${item.regras}
+
+Iniciativa:
+${item.iniciativa}
+
+Comunicação:
+${item.comunicacao}
+
+Confiabilidade:
+${item.confiabilidade}
 
 Observação:
 ${item.observacao}
@@ -140,7 +209,7 @@ ${item.observacao}
 Data:
 ${item.data}
 
-------------------------------------
+--------------------------------------
 
 `;
   });
@@ -150,7 +219,7 @@ ${item.data}
 `TOTAL DE REGISTROS:
 ${registros.length}
 
-====================================`;
+======================================`;
 
   document.getElementById("relatorio").value =
     texto;
