@@ -8,6 +8,26 @@ function mostrarFormulario() {
   formulario.classList.toggle("oculto");
 }
 
+function mostrarObs(id) {
+
+  const select =
+    document.getElementById(id);
+
+  const textarea =
+    document.getElementById(`obs-${id}`);
+
+  if (select.value === "Ruim") {
+
+    textarea.classList.remove("oculto");
+
+  } else {
+
+    textarea.classList.add("oculto");
+
+    textarea.value = "";
+  }
+}
+
 function adicionarRegistro() {
 
   const funcionario =
@@ -40,11 +60,20 @@ function adicionarRegistro() {
     epis:
       document.getElementById("epis").value,
 
+    obsEpis:
+      document.getElementById("obs-epis").value,
+
     organizacao:
       document.getElementById("organizacao").value,
 
+    obsOrganizacao:
+      document.getElementById("obs-organizacao").value,
+
     produtividade:
       document.getElementById("produtividade").value,
+
+    obsProdutividade:
+      document.getElementById("obs-produtividade").value,
 
     abandono:
       document.getElementById("abandono").value,
@@ -52,14 +81,38 @@ function adicionarRegistro() {
     regras:
       document.getElementById("regras").value,
 
+    obsRegras:
+      document.getElementById("obs-regras").value,
+
     iniciativa:
       document.getElementById("iniciativa").value,
+
+    obsIniciativa:
+      document.getElementById("obs-iniciativa").value,
 
     comunicacao:
       document.getElementById("comunicacao").value,
 
+    obsComunicacao:
+      document.getElementById("obs-comunicacao").value,
+
     confiabilidade:
       document.getElementById("confiabilidade").value,
+
+    obsConfiabilidade:
+      document.getElementById("obs-confiabilidade").value,
+
+    pontualidadeChegada:
+      document.getElementById("pontualidade-chegada").value,
+
+    obsPontualidadeChegada:
+      document.getElementById("obs-pontualidade-chegada").value,
+
+    pontualidadeSaida:
+      document.getElementById("pontualidade-saida").value,
+
+    obsPontualidadeSaida:
+      document.getElementById("obs-pontualidade-saida").value,
 
     data:
       new Date().toLocaleString("pt-BR")
@@ -93,41 +146,13 @@ function atualizarLista() {
 
         <strong>Atividade:</strong>
         ${item.atividade}
-        <br><br>
-
-        <strong>Uso de EPIs:</strong>
-        ${item.epis}
-        <br>
-
-        <strong>Organização:</strong>
-        ${item.organizacao}
-        <br>
-
-        <strong>Produtividade:</strong>
-        ${item.produtividade}
         <br>
 
         <strong>Abandono de Área:</strong>
         ${item.abandono}
         <br>
 
-        <strong>Cumprimento de Regras:</strong>
-        ${item.regras}
-        <br>
-
-        <strong>Iniciativa:</strong>
-        ${item.iniciativa}
-        <br>
-
-        <strong>Comunicação:</strong>
-        ${item.comunicacao}
-        <br>
-
-        <strong>Confiabilidade:</strong>
-        ${item.confiabilidade}
-        <br><br>
-
-        <strong>Observação:</strong>
+        <strong>Observações Gerais:</strong>
         ${item.observacao}
         <br>
 
@@ -187,16 +212,23 @@ ${item.funcionario}
 Atividade:
 ${item.atividade}
 
-AVALIAÇÃO OPERACIONAL
-
 Uso de EPIs:
 ${item.epis}
+
+Observação:
+${item.obsEpis || "Nenhuma"}
 
 Organização:
 ${item.organizacao}
 
+Observação:
+${item.obsOrganizacao || "Nenhuma"}
+
 Produtividade:
 ${item.produtividade}
+
+Observação:
+${item.obsProdutividade || "Nenhuma"}
 
 Abandono de Área:
 ${item.abandono}
@@ -204,16 +236,40 @@ ${item.abandono}
 Cumprimento de Regras:
 ${item.regras}
 
+Observação:
+${item.obsRegras || "Nenhuma"}
+
 Iniciativa:
 ${item.iniciativa}
 
+Observação:
+${item.obsIniciativa || "Nenhuma"}
+
 Comunicação:
 ${item.comunicacao}
+
+Observação:
+${item.obsComunicacao || "Nenhuma"}
 
 Confiabilidade:
 ${item.confiabilidade}
 
 Observação:
+${item.obsConfiabilidade || "Nenhuma"}
+
+Pontualidade ao Chegar:
+${item.pontualidadeChegada}
+
+Observação:
+${item.obsPontualidadeChegada || "Nenhuma"}
+
+Pontualidade ao Sair:
+${item.pontualidadeSaida}
+
+Observação:
+${item.obsPontualidadeSaida || "Nenhuma"}
+
+Observações Gerais:
 ${item.observacao}
 
 Data:
