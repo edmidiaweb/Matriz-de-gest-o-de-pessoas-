@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestão Operacional</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+    <h1>Gestão Operacional</h1>
+
+    <input type="text" id="funcionario" placeholder="Funcionário">
+
+    <input type="text" id="atividade" placeholder="Atividade">
+
+    <textarea id="observacao" placeholder="Observação"></textarea>
+
+    <button onclick="adicionarRegistro()">
+      Adicionar
+    </button>
+
+    <h2>Ocorrências do Dia</h2>
+
+    <ul id="lista"></ul>
+
+    <button onclick="gerarRelatorio()">
+      Gerar Relatório
+    </button>
+
+    <button onclick="enviarWhatsApp()">
+      Enviar WhatsApp
+    </button>
+
+    <textarea id="relatorio" readonly></textarea>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
