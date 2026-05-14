@@ -31,7 +31,7 @@ function mostrarObs(id) {
 function adicionarRegistro() {
 
   const funcionario =
-    document.getElementById("funcionario").selectedIndex = 0;
+    document.getElementById("funcionario").value;
 
   const atividade =
     document.getElementById("atividade").value;
@@ -152,10 +152,6 @@ function atualizarLista() {
         ${item.abandono}
         <br>
 
-        <strong>Observações Gerais:</strong>
-        ${item.observacao}
-        <br>
-
         <strong>Data:</strong>
         ${item.data}
 
@@ -166,7 +162,7 @@ function atualizarLista() {
 
 function limparCampos() {
 
-  document.getElementById("funcionario").value = "";
+  document.getElementById("funcionario").selectedIndex = 0;
 
   document.getElementById("atividade").value = "";
 
@@ -214,19 +210,16 @@ ${item.atividade}
 
 Uso de EPIs:
 ${item.epis}
-
 Observação:
 ${item.obsEpis || "Nenhuma"}
 
 Organização:
 ${item.organizacao}
-
 Observação:
 ${item.obsOrganizacao || "Nenhuma"}
 
 Produtividade:
 ${item.produtividade}
-
 Observação:
 ${item.obsProdutividade || "Nenhuma"}
 
@@ -235,37 +228,31 @@ ${item.abandono}
 
 Cumprimento de Regras:
 ${item.regras}
-
 Observação:
 ${item.obsRegras || "Nenhuma"}
 
 Iniciativa:
 ${item.iniciativa}
-
 Observação:
 ${item.obsIniciativa || "Nenhuma"}
 
 Comunicação:
 ${item.comunicacao}
-
 Observação:
 ${item.obsComunicacao || "Nenhuma"}
 
 Confiabilidade:
 ${item.confiabilidade}
-
 Observação:
 ${item.obsConfiabilidade || "Nenhuma"}
 
 Pontualidade ao Chegar:
 ${item.pontualidadeChegada}
-
 Observação:
 ${item.obsPontualidadeChegada || "Nenhuma"}
 
 Pontualidade ao Sair:
 ${item.pontualidadeSaida}
-
 Observação:
 ${item.obsPontualidadeSaida || "Nenhuma"}
 
@@ -315,9 +302,32 @@ function enviarWhatsApp() {
     "5513996305218";
 
   window.open(
-
     `https://wa.me/${numero}?text=${mensagem}`,
-
     "_blank"
   );
+}
+
+function enviarEmail() {
+
+  const texto =
+    document.getElementById("relatorio").value;
+
+  if (texto === "") {
+
+    alert("Gere o relatório antes.");
+
+    return;
+  }
+
+  const assunto =
+    encodeURIComponent("Relatório Operacional");
+
+  const corpo =
+    encodeURIComponent(texto);
+
+  const email =
+    "seuemail@gmail.com";
+
+  window.location.href =
+    `mailto:${email}?subject=${assunto}&body=${corpo}`;
 }
