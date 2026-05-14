@@ -1,24 +1,87 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
   <meta charset="UTF-8">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Gestão Operacional</title>
+
   <link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
 
   <div class="container">
+
     <h1>Gestão Operacional</h1>
 
-    <input type="text" id="funcionario" placeholder="Funcionário">
+    <input
+      type="text"
+      id="funcionario"
+      placeholder="Nome do funcionário"
+    >
 
-    <input type="text" id="atividade" placeholder="Atividade">
+    <input
+      type="text"
+      id="atividade"
+      placeholder="Atividade realizada"
+    >
 
-    <textarea id="observacao" placeholder="Observação"></textarea>
+    <select id="categoria">
+
+      <option value="">
+        Selecione uma categoria
+      </option>
+
+      <option value="Uso de EPIs">
+        Uso de EPIs
+      </option>
+
+      <option value="Organização">
+        Organização
+      </option>
+
+      <option value="Produtividade">
+        Produtividade
+      </option>
+
+      <option value="Abandono de Área">
+        Abandono de Área
+      </option>
+
+      <option value="Cumprimento de Regras">
+        Cumprimento de Regras
+      </option>
+
+      <option value="Iniciativa">
+        Iniciativa
+      </option>
+
+      <option value="Comunicação">
+        Comunicação
+      </option>
+
+      <option value="Confiabilidade">
+        Confiabilidade
+      </option>
+
+    </select>
+
+    <textarea
+      id="observacao"
+      placeholder="Observações"
+    ></textarea>
 
     <button onclick="adicionarRegistro()">
-      Adicionar
+      Adicionar Registro
+    </button>
+
+    <button onclick="limparRegistros()">
+      Limpar Registros
     </button>
 
     <h2>Ocorrências do Dia</h2>
@@ -29,13 +92,24 @@
       Gerar Relatório
     </button>
 
-    <button onclick="enviarWhatsApp()">
-      Enviar WhatsApp
+    <button onclick="limparRelatorio()">
+      Limpar Relatório
     </button>
 
-    <textarea id="relatorio" readonly></textarea>
+    <button onclick="enviarWhatsApp()">
+      Enviar no WhatsApp
+    </button>
+
+    <textarea
+      id="relatorio"
+      readonly
+      placeholder="O relatório aparecerá aqui..."
+    ></textarea>
+
   </div>
 
   <script src="script.js"></script>
+
 </body>
-</html>
+
+      </html>
