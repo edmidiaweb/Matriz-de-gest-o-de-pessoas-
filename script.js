@@ -1,5 +1,13 @@
 let registros = [];
 
+function mostrarFormulario() {
+
+  const formulario =
+    document.getElementById("formulario");
+
+  formulario.classList.toggle("oculto");
+}
+
 function adicionarRegistro() {
 
   const funcionario =
@@ -62,6 +70,8 @@ function adicionarRegistro() {
   atualizarLista();
 
   limparCampos();
+
+  alert("Registro criado com sucesso.");
 }
 
 function atualizarLista() {
