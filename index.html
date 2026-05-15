@@ -210,7 +210,7 @@
 
       </div>
 
-      <!-- Pontualidade Chegada -->
+      <!-- Pontualidade ao Chegar -->
 
       <div class="categoria">
 
@@ -230,7 +230,7 @@
 
       </div>
 
-      <!-- Pontualidade Saída -->
+      <!-- Pontualidade ao Sair -->
 
       <div class="categoria">
 
@@ -332,6 +332,10 @@
       Enviar por E-mail
     </button>
 
+    <button onclick="baixarPDF()">
+      Baixar Relatório em PDF
+    </button>
+
     <textarea
       id="relatorio"
       readonly
@@ -339,6 +343,12 @@
     ></textarea>
 
   </div>
+
+  <!-- Biblioteca PDF -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <!-- Script principal -->
 
   <script src="script.js"></script>
 
