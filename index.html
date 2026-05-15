@@ -269,6 +269,41 @@
 
     <ul id="lista"></ul>
 
+    <h2>Serviços Pendentes</h2>
+
+    <input
+      type="text"
+      id="pendencia"
+      placeholder="Descreva o serviço pendente"
+    >
+
+    <select id="prioridade">
+
+      <option value="Baixa">
+        Prioridade Baixa
+      </option>
+
+      <option value="Média">
+        Prioridade Média
+      </option>
+
+      <option value="Alta">
+        Prioridade Alta
+      </option>
+
+    </select>
+
+    <textarea
+      id="obs-pendencia"
+      placeholder="Observações da pendência"
+    ></textarea>
+
+    <button onclick="adicionarPendencia()">
+      Adicionar Pendência
+    </button>
+
+    <ul id="lista-pendencias"></ul>
+
     <button onclick="gerarRelatorio()">
       Gerar Relatório
     </button>
@@ -279,19 +314,19 @@
 
     <select id="numero-whatsapp">
 
-  <option value="5513996305218">
-    WhatsApp 1 - 13 99630-5218
-  </option>
+      <option value="5513996305218">
+        WhatsApp 1 - 13 99630-5218
+      </option>
 
-  <option value="5511999086331">
-    WhatsApp 2 - 11 99908-6331
-  </option>
+      <option value="5511999086331">
+        WhatsApp 2 - 11 99908-6331
+      </option>
 
-</select>
+    </select>
 
-<button onclick="enviarWhatsApp()">
-  Enviar no WhatsApp
-</button>
+    <button onclick="enviarWhatsApp()">
+      Enviar no WhatsApp
+    </button>
 
     <button onclick="enviarEmail()">
       Enviar por E-mail
