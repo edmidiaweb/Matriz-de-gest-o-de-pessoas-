@@ -299,10 +299,12 @@ function enviarWhatsApp() {
     encodeURIComponent(texto);
 
   const numero =
-    "5513996305218";
+    document.getElementById("numero-whatsapp").value;
 
   window.open(
+
     `https://wa.me/${numero}?text=${mensagem}`,
+
     "_blank"
   );
 }
