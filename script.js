@@ -124,6 +124,8 @@ function adicionarRegistro() {
 
   atualizarLista();
 
+  gerarRelatorio();
+
   limparCampos();
 
   alert("Registro criado com sucesso.");
@@ -169,6 +171,19 @@ function limparCampos() {
   document.getElementById("atividade").value = "";
 
   document.getElementById("observacao").value = "";
+
+  document.querySelectorAll("textarea").forEach((campo) => {
+
+    if (campo.id !== "relatorio") {
+
+      campo.value = "";
+    }
+  });
+
+  document.querySelectorAll(".oculto").forEach((item) => {
+
+    item.classList.add("oculto");
+  });
 }
 
 function adicionarPendencia() {
@@ -193,14 +208,21 @@ function adicionarPendencia() {
 
     pendencia,
     prioridade,
-    observacao
+    observacao,
+
+    data:
+      new Date().toLocaleString("pt-BR")
   };
 
   pendencias.push(item);
 
   atualizarPendencias();
 
+  gerarRelatorio();
+
   limparPendencias();
+
+  alert("Pendência adicionada ao relatório.");
 }
 
 function atualizarPendencias() {
@@ -226,6 +248,10 @@ function atualizarPendencias() {
 
         <strong>Observação:</strong>
         ${item.observacao}
+        <br>
+
+        <strong>Data:</strong>
+        ${item.data}
 
       </li>
     `;
@@ -264,11 +290,20 @@ ${item.atividade}
 Uso de EPIs:
 ${item.epis}
 
+Observação:
+${item.obsEpis || "Nenhuma"}
+
 Organização:
 ${item.organizacao}
 
+Observação:
+${item.obsOrganizacao || "Nenhuma"}
+
 Produtividade:
 ${item.produtividade}
+
+Observação:
+${item.obsProdutividade || "Nenhuma"}
 
 Abandono de Área:
 ${item.abandono}
@@ -276,20 +311,38 @@ ${item.abandono}
 Cumprimento de Regras:
 ${item.regras}
 
+Observação:
+${item.obsRegras || "Nenhuma"}
+
 Iniciativa:
 ${item.iniciativa}
+
+Observação:
+${item.obsIniciativa || "Nenhuma"}
 
 Comunicação:
 ${item.comunicacao}
 
+Observação:
+${item.obsComunicacao || "Nenhuma"}
+
 Confiabilidade:
 ${item.confiabilidade}
+
+Observação:
+${item.obsConfiabilidade || "Nenhuma"}
 
 Pontualidade ao Chegar:
 ${item.pontualidadeChegada}
 
+Observação:
+${item.obsPontualidadeChegada || "Nenhuma"}
+
 Pontualidade ao Sair:
 ${item.pontualidadeSaida}
+
+Observação:
+${item.obsPontualidadeSaida || "Nenhuma"}
 
 Observações Gerais:
 ${item.observacao}
@@ -325,6 +378,9 @@ ${item.prioridade}
 Observação:
 ${item.observacao}
 
+Data:
+${item.data || "Não informado"}
+
 --------------------------------------
 
 `;
@@ -352,7 +408,7 @@ function limparRelatorio() {
 function limparRegistros() {
 
   const confirmar =
-    confirm("Deseja apagar todos os registros?");
+    confirm("Deseja apagar todos os registros e pendências?");
 
   if (!confirmar) {
 
@@ -389,7 +445,9 @@ function enviarWhatsApp() {
     document.getElementById("numero-whatsapp").value;
 
   window.open(
+
     `https://wa.me/${numero}?text=${mensagem}`,
+
     "_blank"
   );
 }
@@ -416,5 +474,6 @@ function enviarEmail() {
     "seuemail@gmail.com";
 
   window.location.href =
+
     `mailto:${email}?subject=${assunto}&body=${corpo}`;
 }
