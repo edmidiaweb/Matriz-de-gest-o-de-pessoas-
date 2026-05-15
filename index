@@ -1,41 +1,347 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
   <meta charset="UTF-8">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Gestão Operacional</title>
+
   <link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
 
   <div class="container">
+
     <h1>Gestão Operacional</h1>
 
-    <input type="text" id="funcionario" placeholder="Funcionário">
+    <button class="btn-principal" onclick="mostrarFormulario()">
+      Criar Registro
+    </button>
 
-    <input type="text" id="atividade" placeholder="Atividade">
+    <div id="formulario" class="formulario oculto">
 
-    <textarea id="observacao" placeholder="Observação"></textarea>
+      <select id="funcionario">
 
-    <button onclick="adicionarRegistro()">
-      Adicionar
+        <option value="">
+          Selecione o funcionário
+        </option>
+
+        <option value="Lucas">
+          Lucas
+        </option>
+
+        <option value="Gamarra">
+          Gamarra
+        </option>
+
+        <option value="Mateus">
+          Mateus
+        </option>
+
+        <option value="Luis">
+          Luis
+        </option>
+
+      </select>
+
+      <input
+        type="text"
+        id="atividade"
+        placeholder="Atividade realizada"
+      >
+
+      <h2>Avaliação Operacional</h2>
+
+      <!-- Uso de EPIs -->
+
+      <div class="categoria">
+
+        <label>Uso de EPIs</label>
+
+        <select id="epis" onchange="mostrarObs('epis')">
+          <option value="Bom">Bom</option>
+          <option value="Regular">Regular</option>
+          <option value="Ruim">Ruim</option>
+        </select>
+
+        <textarea
+          id="obs-epis"
+          class="oculto"
+          placeholder="Observação sobre EPIs"
+        ></textarea>
+
+      </div>
+
+      <!-- Organização -->
+
+      <div class="categoria">
+
+        <label>Organização</label>
+
+        <select id="organizacao" onchange="mostrarObs('organizacao')">
+          <option value="Bom">Bom</option>
+          <option value="Regular">Regular</option>
+          <option value="Ruim">Ruim</option>
+        </select>
+
+        <textarea
+          id="obs-organizacao"
+          class="oculto"
+          placeholder="Observação sobre organização"
+        ></textarea>
+
+      </div>
+
+      <!-- Produtividade -->
+
+      <div class="categoria">
+
+        <label>Produtividade</label>
+
+        <select id="produtividade" onchange="mostrarObs('produtividade')">
+          <option value="Bom">Bom</option>
+          <option value="Regular">Regular</option>
+          <option value="Ruim">Ruim</option>
+        </select>
+
+        <textarea
+          id="obs-produtividade"
+          class="oculto"
+          placeholder="Observação sobre produtividade"
+        ></textarea>
+
+      </div>
+
+      <!-- Abandono de Área -->
+
+      <div class="categoria">
+
+        <label>Abandono de Área</label>
+
+        <select id="abandono">
+          <option value="Não">Não</option>
+          <option value="Sim">Sim</option>
+        </select>
+
+      </div>
+
+      <!-- Cumprimento de Regras -->
+
+      <div class="categoria">
+
+        <label>Cumprimento de Regras</label>
+
+        <select id="regras" onchange="mostrarObs('regras')">
+          <option value="Bom">Bom</option>
+          <option value="Regular">Regular</option>
+          <option value="Ruim">Ruim</option>
+        </select>
+
+        <textarea
+          id="obs-regras"
+          class="oculto"
+          placeholder="Observação sobre regras"
+        ></textarea>
+
+      </div>
+
+      <!-- Iniciativa -->
+
+      <div class="categoria">
+
+        <label>Iniciativa</label>
+
+        <select id="iniciativa" onchange="mostrarObs('iniciativa')">
+          <option value="Bom">Bom</option>
+          <option value="Regular">Regular</option>
+          <option value="Ruim">Ruim</option>
+        </select>
+
+        <textarea
+          id="obs-iniciativa"
+          class="oculto"
+          placeholder="Observação sobre iniciativa"
+        ></textarea>
+
+      </div>
+
+      <!-- Comunicação -->
+
+      <div class="categoria">
+
+        <label>Comunicação</label>
+
+        <select id="comunicacao" onchange="mostrarObs('comunicacao')">
+          <option value="Bom">Bom</option>
+          <option value="Regular">Regular</option>
+          <option value="Ruim">Ruim</option>
+        </select>
+
+        <textarea
+          id="obs-comunicacao"
+          class="oculto"
+          placeholder="Observação sobre comunicação"
+        ></textarea>
+
+      </div>
+
+      <!-- Confiabilidade -->
+
+      <div class="categoria">
+
+        <label>Confiabilidade</label>
+
+        <select id="confiabilidade" onchange="mostrarObs('confiabilidade')">
+          <option value="Bom">Bom</option>
+          <option value="Regular">Regular</option>
+          <option value="Ruim">Ruim</option>
+        </select>
+
+        <textarea
+          id="obs-confiabilidade"
+          class="oculto"
+          placeholder="Observação sobre confiabilidade"
+        ></textarea>
+
+      </div>
+
+      <!-- Pontualidade Chegada -->
+
+      <div class="categoria">
+
+        <label>Pontualidade ao Chegar</label>
+
+        <select id="pontualidade-chegada" onchange="mostrarObs('pontualidade-chegada')">
+          <option value="Bom">Bom</option>
+          <option value="Regular">Regular</option>
+          <option value="Ruim">Ruim</option>
+        </select>
+
+        <textarea
+          id="obs-pontualidade-chegada"
+          class="oculto"
+          placeholder="Observação sobre pontualidade ao chegar"
+        ></textarea>
+
+      </div>
+
+      <!-- Pontualidade Saída -->
+
+      <div class="categoria">
+
+        <label>Pontualidade ao Sair</label>
+
+        <select id="pontualidade-saida" onchange="mostrarObs('pontualidade-saida')">
+          <option value="Bom">Bom</option>
+          <option value="Regular">Regular</option>
+          <option value="Ruim">Ruim</option>
+        </select>
+
+        <textarea
+          id="obs-pontualidade-saida"
+          class="oculto"
+          placeholder="Observação sobre pontualidade ao sair"
+        ></textarea>
+
+      </div>
+
+      <textarea
+        id="observacao"
+        placeholder="Observações gerais"
+      ></textarea>
+
+      <button onclick="adicionarRegistro()">
+        Salvar Registro
+      </button>
+
+    </div>
+
+    <button onclick="limparRegistros()">
+      Limpar Registros
     </button>
 
     <h2>Ocorrências do Dia</h2>
 
     <ul id="lista"></ul>
 
+    <h2>Serviços Pendentes</h2>
+
+    <input
+      type="text"
+      id="pendencia"
+      placeholder="Descreva o serviço pendente"
+    >
+
+    <select id="prioridade">
+
+      <option value="Baixa">
+        Prioridade Baixa
+      </option>
+
+      <option value="Média">
+        Prioridade Média
+      </option>
+
+      <option value="Alta">
+        Prioridade Alta
+      </option>
+
+    </select>
+
+    <textarea
+      id="obs-pendencia"
+      placeholder="Observações da pendência"
+    ></textarea>
+
+    <button onclick="adicionarPendencia()">
+      Adicionar Pendência
+    </button>
+
+    <ul id="lista-pendencias"></ul>
+
     <button onclick="gerarRelatorio()">
       Gerar Relatório
     </button>
 
-    <button onclick="enviarWhatsApp()">
-      Enviar WhatsApp
+    <button onclick="limparRelatorio()">
+      Limpar Relatório
     </button>
 
-    <textarea id="relatorio" readonly></textarea>
+    <select id="numero-whatsapp">
+
+      <option value="5513996305218">
+        WhatsApp 1 - 13 99630-5218
+      </option>
+
+      <option value="5511999086331">
+        WhatsApp 2 - 11 99908-6331
+      </option>
+
+    </select>
+
+    <button onclick="enviarWhatsApp()">
+      Enviar no WhatsApp
+    </button>
+
+    <button onclick="enviarEmail()">
+      Enviar por E-mail
+    </button>
+
+    <textarea
+      id="relatorio"
+      readonly
+      placeholder="O relatório aparecerá aqui..."
+    ></textarea>
+
   </div>
 
   <script src="script.js"></script>
+
 </body>
+
 </html>
