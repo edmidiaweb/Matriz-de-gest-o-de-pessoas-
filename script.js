@@ -1,5 +1,7 @@
 let registros = [];
 
+let pendencias = [];
+
 function mostrarFormulario() {
 
   const formulario =
@@ -169,21 +171,72 @@ function limparCampos() {
   document.getElementById("observacao").value = "";
 }
 
-function limparRegistros() {
+function adicionarPendencia() {
 
-  const confirmar =
-    confirm("Deseja apagar todos os registros?");
+  const pendencia =
+    document.getElementById("pendencia").value;
 
-  if (!confirmar) {
+  const prioridade =
+    document.getElementById("prioridade").value;
+
+  const observacao =
+    document.getElementById("obs-pendencia").value;
+
+  if (pendencia === "") {
+
+    alert("Descreva a pendência.");
 
     return;
   }
 
-  registros = [];
+  const item = {
 
-  atualizarLista();
+    pendencia,
+    prioridade,
+    observacao
+  };
 
-  limparRelatorio();
+  pendencias.push(item);
+
+  atualizarPendencias();
+
+  limparPendencias();
+}
+
+function atualizarPendencias() {
+
+  const lista =
+    document.getElementById("lista-pendencias");
+
+  lista.innerHTML = "";
+
+  pendencias.forEach((item) => {
+
+    lista.innerHTML += `
+
+      <li>
+
+        <strong>Pendência:</strong>
+        ${item.pendencia}
+        <br>
+
+        <strong>Prioridade:</strong>
+        ${item.prioridade}
+        <br>
+
+        <strong>Observação:</strong>
+        ${item.observacao}
+
+      </li>
+    `;
+  });
+}
+
+function limparPendencias() {
+
+  document.getElementById("pendencia").value = "";
+
+  document.getElementById("obs-pendencia").value = "";
 }
 
 function gerarRelatorio() {
@@ -198,9 +251,9 @@ function gerarRelatorio() {
 
   registros.forEach((item, index) => {
 
-    texto +=
+    texto += `
 
-`${index + 1}º REGISTRO
+${index + 1}º REGISTRO
 
 Funcionário:
 ${item.funcionario}
@@ -210,51 +263,33 @@ ${item.atividade}
 
 Uso de EPIs:
 ${item.epis}
-Observação:
-${item.obsEpis || "Nenhuma"}
 
 Organização:
 ${item.organizacao}
-Observação:
-${item.obsOrganizacao || "Nenhuma"}
 
 Produtividade:
 ${item.produtividade}
-Observação:
-${item.obsProdutividade || "Nenhuma"}
 
 Abandono de Área:
 ${item.abandono}
 
 Cumprimento de Regras:
 ${item.regras}
-Observação:
-${item.obsRegras || "Nenhuma"}
 
 Iniciativa:
 ${item.iniciativa}
-Observação:
-${item.obsIniciativa || "Nenhuma"}
 
 Comunicação:
 ${item.comunicacao}
-Observação:
-${item.obsComunicacao || "Nenhuma"}
 
 Confiabilidade:
 ${item.confiabilidade}
-Observação:
-${item.obsConfiabilidade || "Nenhuma"}
 
 Pontualidade ao Chegar:
 ${item.pontualidadeChegada}
-Observação:
-${item.obsPontualidadeChegada || "Nenhuma"}
 
 Pontualidade ao Sair:
 ${item.pontualidadeSaida}
-Observação:
-${item.obsPontualidadeSaida || "Nenhuma"}
 
 Observações Gerais:
 ${item.observacao}
@@ -267,10 +302,41 @@ ${item.data}
 `;
   });
 
-  texto +=
+  texto += `
 
-`TOTAL DE REGISTROS:
+SERVIÇOS PENDENTES
+
+======================================
+
+`;
+
+  pendencias.forEach((item, index) => {
+
+    texto += `
+
+${index + 1}º PENDÊNCIA
+
+Serviço:
+${item.pendencia}
+
+Prioridade:
+${item.prioridade}
+
+Observação:
+${item.observacao}
+
+--------------------------------------
+
+`;
+  });
+
+  texto += `
+
+TOTAL DE REGISTROS:
 ${registros.length}
+
+TOTAL DE PENDÊNCIAS:
+${pendencias.length}
 
 ======================================`;
 
@@ -281,6 +347,27 @@ ${registros.length}
 function limparRelatorio() {
 
   document.getElementById("relatorio").value = "";
+}
+
+function limparRegistros() {
+
+  const confirmar =
+    confirm("Deseja apagar todos os registros?");
+
+  if (!confirmar) {
+
+    return;
+  }
+
+  registros = [];
+
+  pendencias = [];
+
+  atualizarLista();
+
+  atualizarPendencias();
+
+  limparRelatorio();
 }
 
 function enviarWhatsApp() {
@@ -302,9 +389,7 @@ function enviarWhatsApp() {
     document.getElementById("numero-whatsapp").value;
 
   window.open(
-
     `https://wa.me/${numero}?text=${mensagem}`,
-
     "_blank"
   );
 }
