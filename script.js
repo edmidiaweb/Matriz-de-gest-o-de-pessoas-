@@ -1,6 +1,10 @@
-let registros = JSON.parse(localStorage.getItem("registros")) || [];
+let registros =
+  JSON.parse(localStorage.getItem("registros")) || [];
 
-let pendencias = JSON.parse(localStorage.getItem("pendencias")) || [];
+let pendencias =
+  JSON.parse(localStorage.getItem("pendencias")) || [];
+
+let indiceEdicao = null;
 
 window.onload = function () {
 
@@ -142,7 +146,20 @@ function adicionarRegistro() {
       new Date().toLocaleString("pt-BR")
   };
 
-  registros.push(registro);
+  if (indiceEdicao !== null) {
+
+    registros[indiceEdicao] = registro;
+
+    indiceEdicao = null;
+
+    alert("Registro atualizado.");
+
+  } else {
+
+    registros.push(registro);
+
+    alert("Registro criado com sucesso.");
+  }
 
   salvarLocalStorage();
 
@@ -151,8 +168,108 @@ function adicionarRegistro() {
   gerarRelatorio();
 
   limparCampos();
+}
 
-  alert("Registro criado com sucesso.");
+function editarRegistro(index) {
+
+  const item = registros[index];
+
+  indiceEdicao = index;
+
+  document.getElementById("funcionario").value =
+    item.funcionario;
+
+  document.getElementById("atividade").value =
+    item.atividade;
+
+  document.getElementById("observacao").value =
+    item.observacao;
+
+  document.getElementById("epis").value =
+    item.epis;
+
+  document.getElementById("organizacao").value =
+    item.organizacao;
+
+  document.getElementById("produtividade").value =
+    item.produtividade;
+
+  document.getElementById("abandono").value =
+    item.abandono;
+
+  document.getElementById("regras").value =
+    item.regras;
+
+  document.getElementById("iniciativa").value =
+    item.iniciativa;
+
+  document.getElementById("comunicacao").value =
+    item.comunicacao;
+
+  document.getElementById("confiabilidade").value =
+    item.confiabilidade;
+
+  document.getElementById("pontualidade-chegada").value =
+    item.pontualidadeChegada;
+
+  document.getElementById("pontualidade-saida").value =
+    item.pontualidadeSaida;
+
+  document.getElementById("obs-epis").value =
+    item.obsEpis;
+
+  document.getElementById("obs-organizacao").value =
+    item.obsOrganizacao;
+
+  document.getElementById("obs-produtividade").value =
+    item.obsProdutividade;
+
+  document.getElementById("obs-regras").value =
+    item.obsRegras;
+
+  document.getElementById("obs-iniciativa").value =
+    item.obsIniciativa;
+
+  document.getElementById("obs-comunicacao").value =
+    item.obsComunicacao;
+
+  document.getElementById("obs-confiabilidade").value =
+    item.obsConfiabilidade;
+
+  document.getElementById("obs-pontualidade-chegada").value =
+    item.obsPontualidadeChegada;
+
+  document.getElementById("obs-pontualidade-saida").value =
+    item.obsPontualidadeSaida;
+
+  document.getElementById("formulario")
+    .classList.remove("oculto");
+
+  window.scrollTo({
+
+    top: 0,
+
+    behavior: "smooth"
+  });
+}
+
+function excluirRegistro(index) {
+
+  const confirmar =
+    confirm("Deseja excluir esta ocorrência?");
+
+  if (!confirmar) {
+
+    return;
+  }
+
+  registros.splice(index, 1);
+
+  salvarLocalStorage();
+
+  atualizarLista();
+
+  gerarRelatorio();
 }
 
 function atualizarLista() {
@@ -162,7 +279,7 @@ function atualizarLista() {
 
   lista.innerHTML = "";
 
-  registros.forEach((item) => {
+  registros.forEach((item, index) => {
 
     lista.innerHTML += `
 
@@ -182,8 +299,19 @@ function atualizarLista() {
 
         <strong>Data:</strong>
         ${item.data}
+        <br><br>
+
+        <button onclick="editarRegistro(${index})">
+          Editar
+        </button>
+
+        <button onclick="excluirRegistro(${index})">
+          Excluir
+        </button>
 
       </li>
+
+      <hr>
     `;
   });
 }
@@ -195,6 +323,14 @@ function limparCampos() {
   document.getElementById("atividade").value = "";
 
   document.getElementById("observacao").value = "";
+
+  document.querySelectorAll("textarea").forEach((campo) => {
+
+    if (campo.id !== "relatorio") {
+
+      campo.value = "";
+    }
+  });
 }
 
 function adicionarPendencia() {
@@ -267,6 +403,8 @@ function atualizarPendencias() {
         ${item.data}
 
       </li>
+
+      <hr>
     `;
   });
 }
@@ -285,6 +423,7 @@ function gerarRelatorio() {
 `RELATÓRIO OPERACIONAL
 
 ======================================
+
 `;
 
   registros.forEach((item, index) => {
@@ -302,11 +441,20 @@ ${item.atividade}
 Uso de EPIs:
 ${item.epis}
 
+Observação:
+${item.obsEpis || "Nenhuma"}
+
 Organização:
 ${item.organizacao}
 
+Observação:
+${item.obsOrganizacao || "Nenhuma"}
+
 Produtividade:
 ${item.produtividade}
+
+Observação:
+${item.obsProdutividade || "Nenhuma"}
 
 Abandono de Área:
 ${item.abandono}
@@ -314,20 +462,38 @@ ${item.abandono}
 Cumprimento de Regras:
 ${item.regras}
 
+Observação:
+${item.obsRegras || "Nenhuma"}
+
 Iniciativa:
 ${item.iniciativa}
+
+Observação:
+${item.obsIniciativa || "Nenhuma"}
 
 Comunicação:
 ${item.comunicacao}
 
+Observação:
+${item.obsComunicacao || "Nenhuma"}
+
 Confiabilidade:
 ${item.confiabilidade}
+
+Observação:
+${item.obsConfiabilidade || "Nenhuma"}
 
 Pontualidade ao Chegar:
 ${item.pontualidadeChegada}
 
+Observação:
+${item.obsPontualidadeChegada || "Nenhuma"}
+
 Pontualidade ao Sair:
 ${item.pontualidadeSaida}
+
+Observação:
+${item.obsPontualidadeSaida || "Nenhuma"}
 
 Observações Gerais:
 ${item.observacao}
@@ -336,6 +502,7 @@ Data:
 ${item.data}
 
 --------------------------------------
+
 `;
   });
 
@@ -344,6 +511,7 @@ ${item.data}
 SERVIÇOS PENDENTES
 
 ======================================
+
 `;
 
   pendencias.forEach((item, index) => {
@@ -365,6 +533,7 @@ Data:
 ${item.data}
 
 --------------------------------------
+
 `;
   });
 
@@ -486,7 +655,8 @@ function baixarPDF() {
   doc.text(linhas, 10, 10);
 
   const dataAtual =
-    new Date().toLocaleDateString("pt-BR")
+    new Date()
+      .toLocaleDateString("pt-BR")
       .replace(/\//g, "-");
 
   doc.save(`Relatorio_${dataAtual}.pdf`);
