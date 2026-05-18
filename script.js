@@ -6,6 +6,8 @@ let pendencias =
 
 let indiceEdicao = null;
 
+let indiceEdicaoPendencia = null;
+
 window.onload = function () {
 
   atualizarLista();
@@ -361,7 +363,20 @@ function adicionarPendencia() {
       new Date().toLocaleString("pt-BR")
   };
 
-  pendencias.push(item);
+  if (indiceEdicaoPendencia !== null) {
+
+    pendencias[indiceEdicaoPendencia] = item;
+
+    indiceEdicaoPendencia = null;
+
+    alert("Pendência atualizada.");
+
+  } else {
+
+    pendencias.push(item);
+
+    alert("Pendência adicionada.");
+  }
 
   salvarLocalStorage();
 
@@ -370,8 +385,48 @@ function adicionarPendencia() {
   gerarRelatorio();
 
   limparPendencias();
+}
 
-  alert("Pendência adicionada ao relatório.");
+function editarPendencia(index) {
+
+  const item = pendencias[index];
+
+  indiceEdicaoPendencia = index;
+
+  document.getElementById("pendencia").value =
+    item.pendencia;
+
+  document.getElementById("prioridade").value =
+    item.prioridade;
+
+  document.getElementById("obs-pendencia").value =
+    item.observacao;
+
+  window.scrollTo({
+
+    top: document.body.scrollHeight,
+
+    behavior: "smooth"
+  });
+}
+
+function excluirPendencia(index) {
+
+  const confirmar =
+    confirm("Deseja excluir esta pendência?");
+
+  if (!confirmar) {
+
+    return;
+  }
+
+  pendencias.splice(index, 1);
+
+  salvarLocalStorage();
+
+  atualizarPendencias();
+
+  gerarRelatorio();
 }
 
 function atualizarPendencias() {
@@ -381,7 +436,7 @@ function atualizarPendencias() {
 
   lista.innerHTML = "";
 
-  pendencias.forEach((item) => {
+  pendencias.forEach((item, index) => {
 
     lista.innerHTML += `
 
@@ -401,6 +456,15 @@ function atualizarPendencias() {
 
         <strong>Data:</strong>
         ${item.data}
+        <br><br>
+
+        <button onclick="editarPendencia(${index})">
+          Editar
+        </button>
+
+        <button onclick="excluirPendencia(${index})">
+          Excluir
+        </button>
 
       </li>
 
