@@ -572,7 +572,7 @@ ${item.data}
 
   texto += `
 
-SERVIÇOS À EXECUTAR
+SERVIÇOS À EXECUTAR OU EXECUTADOS
 
 ======================================
 
