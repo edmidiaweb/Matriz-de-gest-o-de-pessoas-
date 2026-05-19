@@ -484,7 +484,7 @@ function gerarRelatorio() {
 
   let texto =
 
-`RELATÓRIO OPERACIONAL
+`RELATÓRIO OPERACIONAL DE FUNCIONÁRIOS
 
 ======================================
 
@@ -572,7 +572,7 @@ ${item.data}
 
   texto += `
 
-SERVIÇOS PENDENTES
+SERVIÇOS À EXECUTAR
 
 ======================================
 
